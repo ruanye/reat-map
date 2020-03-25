@@ -5,7 +5,7 @@
         show: true,
          //formatter: '省份: {b} <br/> 累计确诊：{c}', // a 系列名称 b name c value 
           formatter(params){
-             return `省份${params.name}<br/> 累计确诊${params.value}`
+             return `省份: ${params.name}<br/> 累计确诊: ${params.value}`
 					}
       },
       visualMap: {
