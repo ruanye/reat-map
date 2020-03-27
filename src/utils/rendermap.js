@@ -1,11 +1,12 @@
  
  const renderMap=(province='china',mapList=[])=>{
+   console.log(mapList)
 	 const option = {
       tooltip: { // 提示框
         show: true,
          //formatter: '省份: {b} <br/> 累计确诊：{c}', // a 系列名称 b name c value 
           formatter(params){
-             return `省份: ${params.name}<br/> 累计确诊: ${params.value}`
+             return `省份: ${params.name}<br/> 累计确诊: ${params.value||0}`
 					}
       },
       visualMap: {

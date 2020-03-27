@@ -40,4 +40,64 @@ module.exports = function(app) {
 5. 地图组件Map 
   ReactECharts的参数
   1. options 决定图像是什么样子
-  
+  2. 处理市级数据 
+```js
+ function getProvinceData(provincename,list){
+     let mapList = [];
+	   const provenList= list.filter(item=>item.provinceShortName===provincename)
+		 	mapList = provenList[0].cities
+	    mapList= mapList.map(item=>{
+			console.log(item,'item')
+			return {
+			  name:`${item.cityName}市`,
+			  value:item.confirmedCount,
+				...item
+			}
+		})
+   return mapList
+}
+```
+6. tab切换组件
+```js
+import { Tabs } from 'antd';
+const tabs = [{ title: '疫情地图' }, { title: '最新消息' }, { title: '辟谣信息' }, { title: '疫情趋势' }]
+function Navtap(){
+   return (
+     <Tabs defaultActiveKey="1" >
+       {tabs.map((item,index)=>{
+         return  <TabPane tab={`${item.title}`} key={index} >
+            {item.title}
+         </TabPane>
+       })}
+       </Tabs>
+  )
+}
+```
+
+6. tabble组件 
+```js 
+import {Table } from 'antd';
+ const columns = [
+      { title: '地区', dataIndex: 'name', key: 'name' },
+      { title: '确诊', dataIndex: 'confirmedCount', key: 'confirmedCount' },
+      { title: '死亡', dataIndex: 'deadCount', key: 'deadCount' },
+      { title: '治愈', dataIndex: 'curedCount', key: 'curedCount' }
+    ]
+   <Table
+      columns={columns}
+      pagination={false}
+      expandedRowRender={(item) => expandedRowRender(item)}
+      dataSource={data}
+      rowKey={(record) => record.name}
+     />
+    //展开的表格显示的数据  
+   function expandedRowRender(item){
+    if(!item.cities)return 
+     let data =  item.cities.map((item)=>{
+       return {
+         name:item.cityName,
+        value:item.confirmedCount,
+       ...item
+    }
+   })
+```
