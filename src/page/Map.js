@@ -8,6 +8,7 @@ import 'echarts/map/js/china'
 import echarts from 'echarts/lib/echarts'
 import  renderMap from '../utils/rendermap'
 import {getData} from '../api/getdata'
+import TabList from './TabList'
 const setChinaData=(list)=>{
 	//使用map转换需要的数据结束  provinceShortName =>name confirmedCount =>value  
  let mapList =  list.map(item=>{
@@ -25,6 +26,7 @@ const setChinaData=(list)=>{
  * @param {*} list 需要过滤的数据 
  */
 function getProvinceData(provincename,list){
+	// 作业 直辖市的时候需要判断下 不加市  
   let mapList = [];
 	   const provenList= list.filter(item=>item.provinceShortName===provincename)
 		 	mapList = provenList[0].cities
@@ -98,6 +100,8 @@ function Map() {
         lazyUpdate={true} 
 				onEvents={events}
 		/>
+		 <TabList data={mapList}/>
+		 
 		</div>
 	)
 }

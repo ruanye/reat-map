@@ -61,6 +61,7 @@ module.exports = function(app) {
 ```js
 import { Tabs } from 'antd';
 const tabs = [{ title: '疫情地图' }, { title: '最新消息' }, { title: '辟谣信息' }, { title: '疫情趋势' }]
+// tab  导航标题 TabPane 里面放需要显示 的内容  
 function Navtap(){
    return (
      <Tabs defaultActiveKey="1" >
@@ -76,6 +77,7 @@ function Navtap(){
 
 6. tabble组件 
 ```js 
+// columns 表头   pagination 是否显示分页按钮 dataSource  数据源  rowKey 数据怎么来显示   expandedRowRender 表格展开显示 是一个函数 能拿到数据的每一项 
 import {Table } from 'antd';
  const columns = [
       { title: '地区', dataIndex: 'name', key: 'name' },
@@ -99,5 +101,5 @@ import {Table } from 'antd';
         value:item.confirmedCount,
        ...item
     }
-   })
+   }
 ```
