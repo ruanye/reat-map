@@ -93,13 +93,25 @@ import {Table } from 'antd';
       rowKey={(record) => record.name}
      />
     //展开的表格显示的数据  
-   function expandedRowRender(item){
-    if(!item.cities)return 
-     let data =  item.cities.map((item)=>{
-       return {
-         name:item.cityName,
-        value:item.confirmedCount,
-       ...item
+  function expandedRowRender(item){
+  if(!item.cities)return 
+  let data =  item.cities.map((item)=>{
+    return {
+      name:item.cityName,
+      value:item.confirmedCount,
+      ...item
     }
-   }
+   })
+  
+   return ( <Table
+          columns={columns}
+          showHeader={false}
+          rowKey={(record) => {
+             console.log(record)
+            return  record.cityName
+            }}
+          dataSource={data}
+          pagination={false}
+        />)
+}
 ```

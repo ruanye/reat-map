@@ -8,7 +8,7 @@ import 'echarts/map/js/china'
 import echarts from 'echarts/lib/echarts'
 import  renderMap from '../utils/rendermap'
 import {getData} from '../api/getdata'
-import TabList from './TabList'
+import TabList from './List'
 const setChinaData=(list)=>{
 	//使用map转换需要的数据结束  provinceShortName =>name confirmedCount =>value  
  let mapList =  list.map(item=>{
